@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		011B8EB21E8A0F6F00971CE3 /* WaterReportSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B8EB11E8A0F6F00971CE3 /* WaterReportSubmitViewController.swift */; };
+		011B8EB41E8A14D900971CE3 /* WaterReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B8EB31E8A14D900971CE3 /* WaterReport.swift */; };
+		011B8EB61E8A15BE00971CE3 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B8EB51E8A15BE00971CE3 /* Location.swift */; };
 		01707FFF1E4D21D400BA6271 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01707FFE1E4D21D400BA6271 /* AppDelegate.swift */; };
 		017080061E4D21D400BA6271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 017080051E4D21D400BA6271 /* Assets.xcassets */; };
 		017080091E4D21D400BA6271 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 017080071E4D21D400BA6271 /* LaunchScreen.storyboard */; };
@@ -44,6 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		011B8EB11E8A0F6F00971CE3 /* WaterReportSubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterReportSubmitViewController.swift; sourceTree = "<group>"; };
+		011B8EB31E8A14D900971CE3 /* WaterReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterReport.swift; sourceTree = "<group>"; };
+		011B8EB51E8A15BE00971CE3 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		01707FFB1E4D21D400BA6271 /* app_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = app_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01707FFE1E4D21D400BA6271 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		017080051E4D21D400BA6271 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -164,6 +170,8 @@
 			isa = PBXGroup;
 			children = (
 				017D03521E6CB0A00064B3A3 /* Account.swift */,
+				011B8EB51E8A15BE00971CE3 /* Location.swift */,
+				011B8EB31E8A14D900971CE3 /* WaterReport.swift */,
 				017D03541E6CB0BF0064B3A3 /* Model.swift */,
 				017D03561E6CB0D40064B3A3 /* Credential.swift */,
 			);
@@ -185,6 +193,7 @@
 				01AF46C21E6CAAEE00E6F75E /* LogInViewController.swift */,
 				01AF46C41E6CAC7F00E6F75E /* LoggedInViewController.swift */,
 				017D034F1E6CB0450064B3A3 /* RegisterViewController.swift */,
+				011B8EB11E8A0F6F00971CE3 /* WaterReportSubmitViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -495,11 +504,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				017D03551E6CB0BF0064B3A3 /* Model.swift in Sources */,
+				011B8EB61E8A15BE00971CE3 /* Location.swift in Sources */,
 				01AF46C31E6CAAEE00E6F75E /* LogInViewController.swift in Sources */,
 				01AF46C51E6CAC7F00E6F75E /* LoggedInViewController.swift in Sources */,
 				01AF46C11E6CAADA00E6F75E /* ViewController.swift in Sources */,
 				017D03501E6CB0450064B3A3 /* RegisterViewController.swift in Sources */,
+				011B8EB21E8A0F6F00971CE3 /* WaterReportSubmitViewController.swift in Sources */,
 				01707FFF1E4D21D400BA6271 /* AppDelegate.swift in Sources */,
+				011B8EB41E8A14D900971CE3 /* WaterReport.swift in Sources */,
 				017D03571E6CB0D40064B3A3 /* Credential.swift in Sources */,
 				017D03531E6CB0A00064B3A3 /* Account.swift in Sources */,
 			);

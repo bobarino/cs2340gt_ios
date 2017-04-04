@@ -10,6 +10,7 @@
 #define Water_Bridging_Header_h
 
 #import <Firebase/Firebase.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 
 

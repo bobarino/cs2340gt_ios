@@ -22,14 +22,27 @@ class Model {
         return accountList
     }
     
-    /*var reportList
+    var reportList: [WaterReport]
      
      func getReportList() -> [WaterReport] {
-     return reportList
-     }*/
+        return reportList
+     }
     
     static var currentAccount = Account()
-    //static let currentReport: WaterReport
+    var currentReport: WaterReport?
+    static var nextReportId = 1
+    
+    func getNextReportId() -> Int {
+        return Model.nextReportId
+    }
+    
+    func getCurrentReport() -> WaterReport {
+        return currentReport!
+    }
+    
+    func setCurrentReport(currentReport: WaterReport) {
+        self.currentReport = currentReport
+    }
     
     func getCurrentAccount() -> Account {
         return Model.currentAccount
@@ -39,19 +52,11 @@ class Model {
         Model.currentAccount = currentAccount
     }
     
-    /*func getCurrentReport() -> WaterReport {
-     return currentAccount
-     }
-     
-     func setCurrentReport(currentReport: WaterReport) {
-     self.currentReport = currentReport
-     }*/
-    
     let nullAcc = Account()
     
     init() {
         accountList = [Account]()
-        //reportList = [WaterReport]()
+        reportList = [WaterReport]()
     }
     
     func addAccountInfo(newAcc: Account) -> Bool {
@@ -76,7 +81,18 @@ class Model {
         
     }
     
-    //addWaterReport
+    func addReport(newReport: WaterReport) -> Bool {
+        if (newReport.getLocation().getLatitude() > 90 ||
+            newReport.getLocation().getLatitude() < -90 ||
+            newReport.getLocation().getLongitude() > 180 ||
+            newReport.getLocation().getLongitude() < -180) {
+            return false
+        } else if(reportList.contains(newReport)) {
+            return false
+        }
+        reportList.append(newReport)
+        return true;
+    }
     
     func findAccountById(id: Int) -> Account {
         for account in accountList {

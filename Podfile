@@ -8,6 +8,8 @@ target 'app_ios' do
   # Pods for app_ios
   pod 'Firebase/Core’
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'GoogleMaps'
 
 
   target 'app_iosTests' do
