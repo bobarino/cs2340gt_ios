@@ -14,11 +14,11 @@ import FirebaseDatabase
 
 class RegisterViewController: UIViewController {
     
+    var ref: FIRDatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        var ref: FIRDatabaseReference!
         
         ref = FIRDatabase.database().reference()
     }
@@ -29,6 +29,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var segController: UISegmentedControl!
     
     @IBAction func createAccountAction(_ sender: AnyObject) {
+        let model = Model().getInstance()
         
         if textFieldRegisterEmail.text == "" {
             let alertController = UIAlertController(title: "Error", message: "Please enter your email and password", preferredStyle: .alert)
@@ -53,12 +54,18 @@ class RegisterViewController: UIViewController {
                 default:
                     break;
             }
+            let account = Account(emailAddress: textFieldRegisterEmail.text!, password: textFieldRegisterPassword.text!, cred: userType)
             
             FIRAuth.auth()?.createUser(withEmail: textFieldRegisterEmail.text!, password: textFieldRegisterPassword.text!) { (user, error) in
                 
                 if error == nil {
                     print("You have successfully signed up")
                     //Goes to the Setup page which lets the user take a photo for their profile picture and also chose a username
+                    
+                    self.ref.child("accounts_ios").child(String(account.getId())).setValue(account.toAnyObject())
+                    { err, ref in
+                        print("Registered!!!")
+                    }
                     
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: "ViewController")
                     self.present(vc!, animated: true, completion: nil)
@@ -72,6 +79,21 @@ class RegisterViewController: UIViewController {
                     self.present(alertController, animated: true, completion: nil)
                 }
             }
+        
+            /*self.ref.child("accounts_ios").child(String(account.getId())).setValue(["credential" : account.getCredential().toString()]) { err, ref in
+                print("Registered!!!")
+            }
+            
+            self.ref.child("accounts_ios").child(String(account.getId())).setValue(["emailAddress" : account.getEmailAddress()])
+            self.ref.child("accounts_ios").child(String(account.getId())).setValue(["id" : account.getId()])
+            
+            self.ref.child("accounts_ios").child(String(account.getId())).setValue(["password" : account.getPassword()])*/
+            
+            model.setCurrentAccount(currentAccount: account)
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ViewController")
+            self.present(vc!, animated: true, completion: nil)
+            
         }
     }
     

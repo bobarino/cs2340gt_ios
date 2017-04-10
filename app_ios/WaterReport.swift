@@ -8,7 +8,7 @@
 
 import Foundation
 
-class WaterReport {
+class WaterReport: Equatable {
     
     var reporter: Account
     var date_time: String
@@ -19,13 +19,17 @@ class WaterReport {
     var location: Location
     var source: String
     
-    init(_reporter: Account, _source: String, _condition: String, _dateTime: String, place: Location) {
+    init(_id: Int, _reporter: Account, _source: String, _condition: String, _dateTime: String, place: Location) {
         reporter = _reporter
-        setCondition(newCondition: _condition)
-        setSource(newSource: _source);
-        id = Model.getNextReportId();
+        condition = WaterReport.setCondition(newCondition: _condition)
+        source = WaterReport.setSource(newSource: _source);
+        id = _id;
         date_time = _dateTime;
         location = place;
+    }
+    
+    convenience init() {
+        self.init(_id: 0, _reporter: Account(), _source: "", _condition: "", _dateTime: "", place: Location(lat: 0, longit: 0))
     }
     
     func getReporter() -> Account {
@@ -64,20 +68,34 @@ class WaterReport {
         return source
     }
     
-    func setSource(newSource: String) {
+    func getSources() -> [String] {
+        return waterSources
+    }
+    
+    class func setSource(newSource: String) -> String {
+        let waterSources: [String] = ["Bottled", "Well", "Stream", "Lake", "Spring", "Other"]
         if (waterSources.contains(newSource)) {
-            source = newSource
+            return newSource;
+            //source = newSource
         }
+        return ""
     }
     
     func getCondition() -> String {
         return condition
     }
     
-    func setCondition(newCondition: String) {
+    func getConditions() -> [String] {
+        return waterCondition
+    }
+    
+    class func setCondition(newCondition: String) -> String {
+        let waterCondition: [String] = ["Waste", "Treatable - Muddy", "Treatable - Clear", "Potable"]
         if (waterCondition.contains(newCondition)) {
-            condition = newCondition
+            return newCondition;
+            //condition = newCondition
         }
+        return ""
     }
     
     func toString() -> String {
@@ -95,4 +113,13 @@ class WaterReport {
         }
     }
     
+}
+
+func == (lhs: WaterReport, rhs: WaterReport) -> Bool {
+    if (rhs.getReporter() === lhs.getReporter() && rhs.getCondition() == lhs.getCondition()
+        && rhs.getSource() == lhs.getSource() && rhs.getId() == lhs.getId()
+        && rhs.getLocation() === lhs.getLocation()) {
+        return true
+    }
+    return false
 }

@@ -72,4 +72,8 @@ class Account {
     func toString() -> String {
         return emailAddress
     }
+    
+    func toAnyObject() -> Dictionary<String, String> {
+        return ["credential":self.getCredential().toString(), "emailAddress":self.getEmailAddress(), "id":String(self.getId()), "password":self.getPassword()]
+    }
 }
