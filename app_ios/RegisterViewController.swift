@@ -29,7 +29,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var segController: UISegmentedControl!
     
     @IBAction func createAccountAction(_ sender: AnyObject) {
-        let model = Model().getInstance()
+        let model = Model.instance
         
         if textFieldRegisterEmail.text == "" {
             let alertController = UIAlertController(title: "Error", message: "Please enter your email and password", preferredStyle: .alert)

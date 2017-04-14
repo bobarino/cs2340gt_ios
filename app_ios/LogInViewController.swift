@@ -33,7 +33,7 @@ class LogInViewController: UIViewController {
      }*/
     
     @IBAction func loginAction(_ sender: AnyObject) {
-        let model = Model().getInstance()
+        let model = Model.instance
         
         if self.textFieldLoginEmail.text == "" || self.textFieldLoginPassword.text == "" {
             
@@ -51,6 +51,7 @@ class LogInViewController: UIViewController {
             FIRAuth.auth()?.signIn(withEmail: self.textFieldLoginEmail.text!, password: self.textFieldLoginPassword.text!) { (user, error) in
                 
                 if error == nil {
+                    //model.addAccountInfo()
                     model.setCurrentAccount(currentAccount: model.findAccountByEmail(email: self.textFieldLoginEmail.text!));
                     print(model.getCurrentAccount().toString())
                     

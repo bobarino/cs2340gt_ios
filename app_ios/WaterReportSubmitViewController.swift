@@ -8,25 +8,42 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
 
 class WaterReportSubmitViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     @IBOutlet weak var waterPicker: UIPickerView!
+    @IBOutlet weak var conditionPicker: UIPickerView!
     @IBOutlet weak var idNum: UILabel!
     @IBOutlet weak var reporter: UILabel!
     @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var lat: UITextField!
+    @IBOutlet weak var long: UITextField!
     var pickerData: [String] = [String]()
+    var conditionData: [String] = [String]()
+    var curAcc : Account!
+    var source : String!
+    var condition : String!
+    
+    var ref: FIRDatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let model = Model().getInstance()
+        let model = Model.instance
+        
+        ref = FIRDatabase.database().reference()
         
         waterPicker.dataSource = self
         waterPicker.delegate = self
         
+        conditionPicker.dataSource = self
+        conditionPicker.delegate = self
+        
         let waterReport = WaterReport()
         pickerData = waterReport.getSources()
-        let curAcc = model.getCurrentAccount()
+        conditionData = waterReport.getConditions()
+        
+        curAcc = model.getCurrentAccount()
         //TODO- Change to water report id
         idNum.text = String(waterReport.getId())
         reporter.text = curAcc.getEmailAddress()
@@ -42,11 +59,37 @@ class WaterReportSubmitViewController: UIViewController, UIPickerViewDataSource,
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count;
+        if pickerView == waterPicker {
+            return pickerData.count;
+        } else if pickerView == conditionPicker {
+            return conditionData.count;
+        }
+        return 0
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
+        if pickerView == waterPicker {
+            source = pickerData[row]
+            return pickerData[row]
+        } else if pickerView == conditionPicker {
+            condition = conditionData[row]
+            return conditionData[row]
+        }
+        return ""
+    }
+    
+    @IBAction func submitReport(_ sender: AnyObject) {
+        let loc = Location(lat: Double(lat.text!)!, longit: Double(long.text!)!)
+        let report = WaterReport(_reporter: curAcc, _source: source, _condition: condition, _dateTime: date.text!, place: loc)
+        
+        self.ref.child("reports_ios").child(idNum.text!).setValue(report.toAnyObject())
+        { err, ref in
+            print("Submitted!!!")
+        }
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoggedInViewController")
+        self.present(vc!, animated: true, completion: nil)
+
     }
 
 }

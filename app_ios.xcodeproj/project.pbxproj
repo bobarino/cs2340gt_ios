@@ -24,6 +24,7 @@
 		01AF46C11E6CAADA00E6F75E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AF46C01E6CAADA00E6F75E /* ViewController.swift */; };
 		01AF46C31E6CAAEE00E6F75E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AF46C21E6CAAEE00E6F75E /* LogInViewController.swift */; };
 		01AF46C51E6CAC7F00E6F75E /* LoggedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AF46C41E6CAC7F00E6F75E /* LoggedInViewController.swift */; };
+		01B1DD121EA08FAA00FE6565 /* WaterReportListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B1DD111EA08FAA00FE6565 /* WaterReportListViewController.swift */; };
 		715FA19AAD4A1094445413ED /* Pods_app_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92A3E1B3601DDC1526C2F491 /* Pods_app_ios.framework */; };
 		74B5BA7B7C8C65F3C04A88AB /* Pods_app_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEF513EDEBCB13D7476A590D /* Pods_app_iosTests.framework */; };
 		FEFB62D20AFF76CE280D954C /* Pods_app_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74266E10E67EFEAB89917C73 /* Pods_app_iosUITests.framework */; };
@@ -71,6 +72,7 @@
 		01AF46C01E6CAADA00E6F75E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		01AF46C21E6CAAEE00E6F75E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		01AF46C41E6CAC7F00E6F75E /* LoggedInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInViewController.swift; sourceTree = "<group>"; };
+		01B1DD111EA08FAA00FE6565 /* WaterReportListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterReportListViewController.swift; sourceTree = "<group>"; };
 		0FCA6A771C35F27D049628D7 /* Pods-app_ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app_ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-app_ios/Pods-app_ios.debug.xcconfig"; sourceTree = "<group>"; };
 		4134B4E595BDACC89EFB1B78 /* Pods-app_iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app_iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-app_iosTests/Pods-app_iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		58A9A1BCED95B5C67AE44B71 /* Pods-app_iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app_iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-app_iosTests/Pods-app_iosTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				01AF46C41E6CAC7F00E6F75E /* LoggedInViewController.swift */,
 				017D034F1E6CB0450064B3A3 /* RegisterViewController.swift */,
 				011B8EB11E8A0F6F00971CE3 /* WaterReportSubmitViewController.swift */,
+				01B1DD111EA08FAA00FE6565 /* WaterReportListViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01B1DD121EA08FAA00FE6565 /* WaterReportListViewController.swift in Sources */,
 				017D03551E6CB0BF0064B3A3 /* Model.swift in Sources */,
 				011B8EB61E8A15BE00971CE3 /* Location.swift in Sources */,
 				01AF46C31E6CAAEE00E6F75E /* LogInViewController.swift in Sources */,

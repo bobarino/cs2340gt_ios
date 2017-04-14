@@ -7,13 +7,81 @@
 //
 
 import Foundation
+import Firebase
 
 class Model {
     
     static let instance = Model()
+    var ref: FIRDatabaseReference!
     
-    func getInstance() -> Model {
+    /*func getInstance() -> Model {
         return .instance
+    }*/
+    func setup() {
+        ref = FIRDatabase.database().reference()
+        ref.child("accounts_ios").observeSingleEvent(of: .value, with: { snapshot in
+            for rest in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                if let snapDict = rest.value as? Dictionary<String, AnyObject> {
+                    var id = 0
+                    var cred = Credential.USER
+                    var email = ""
+                    var pass = ""
+                    for each in snapDict {
+                        if (each.key == "emailAddress") {
+                            email = each.value as! String
+                        } else if (each.key == "password") {
+                            pass = each.value as! String
+                        } else if (each.key == "id") {
+                            let id_string = each.value as! String
+                            id = Int(id_string)!
+                        } else if (each.key == "credential") {
+                            cred = Credential(cred: each.value as! String)!
+                        }
+                    }
+                    let dbAcc = Account(id: id, emailAddress: email, password: pass, cred: cred)
+                    Model.instance.addAccountInfo(newAcc: dbAcc)
+                }
+
+            }
+        })
+        
+        ref.child("reports_ios").observeSingleEvent(of: .value, with: { snapshot in
+            for rest in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                if let snapDict = rest.value as? Dictionary<String, AnyObject> {
+                    var id = 0
+                    var condition = ""
+                    var dateTime = ""
+                    var email = ""
+                    var latitude = 0.0
+                    var longitude = 0.0
+                    var source = ""
+                    for each in snapDict {
+                        if (each.key == "condition") {
+                            condition = each.value as! String
+                        } else if (each.key == "dateTime") {
+                            dateTime = each.value as! String
+                        } else if (each.key == "id") {
+                            let id_string = each.value as! String
+                            id = Int(id_string)!
+                        } else if (each.key == "latitude") {
+                            let lat = each.value as! String
+                            latitude = Double(lat)!
+                        } else if (each.key == "longitude") {
+                            let long = each.value as! String
+                            longitude = Double(long)!
+                        } else if (each.key == "source") {
+                            source = each.value as! String
+                        } else if (each.key == "emailAddress") {
+                            email = each.value as! String
+                        }
+                    }
+                    let dbRep = WaterReport(_id: id, _reporter: Model.instance.findAccountByEmail(email: email), _source: source, _condition: condition, _dateTime: dateTime, place: Location(lat: latitude, longit: longitude))
+                    Model.instance.addReport(newReport: dbRep)
+                }
+                
+            }
+        })
+
     }
     
     var accountList = [Account]()
@@ -66,6 +134,7 @@ class Model {
             }
         }
         accountList.append(newAcc)
+        print(accountList)
         return true;
     }
     

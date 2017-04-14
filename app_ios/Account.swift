@@ -18,11 +18,12 @@ class Account {
     var cred: Credential
     
     // constructor for general use with proper indexing
-    init(emailAddress: String, password: String, cred: Credential) {
+    init(id: Int, emailAddress: String, password: String, cred: Credential) {
         if (emailAddress == "null" && password == "null" && cred == Credential.NULL) {
             self.id = 9999
         } else {
-            self.id = Account.Next_Id + 1
+            Account.Next_Id = id;
+            self.id = Account.Next_Id
         }
         self.emailAddress = emailAddress
         self.password = password
@@ -31,7 +32,12 @@ class Account {
     
     // ONLY for use with creating the null account
     convenience init() {
-        self.init(emailAddress: "null", password: "null", cred: Credential.NULL)
+        self.init(id: 9999, emailAddress: "null", password: "null", cred: Credential.NULL)
+    }
+    
+    convenience init(emailAddress: String, password: String, cred: Credential) {
+        Account.Next_Id = Account.Next_Id + 1;
+        self.init(id: Account.Next_Id, emailAddress: emailAddress, password: password, cred: cred)
     }
     
     func getEmailAddress() -> String {

@@ -10,6 +10,8 @@ import Foundation
 
 class WaterReport: Equatable {
     
+    static var Next_Id = 0
+    
     var reporter: Account
     var date_time: String
     var id: Int
@@ -23,13 +25,19 @@ class WaterReport: Equatable {
         reporter = _reporter
         condition = WaterReport.setCondition(newCondition: _condition)
         source = WaterReport.setSource(newSource: _source);
-        id = _id;
+        WaterReport.Next_Id = _id
+        id = WaterReport.Next_Id
         date_time = _dateTime;
         location = place;
     }
     
     convenience init() {
-        self.init(_id: 0, _reporter: Account(), _source: "", _condition: "", _dateTime: "", place: Location(lat: 0, longit: 0))
+        self.init(_id: WaterReport.Next_Id + 1, _reporter: Account(), _source: "", _condition: "", _dateTime: "", place: Location(lat: 0, longit: 0))
+    }
+    
+    convenience init(_reporter: Account, _source: String, _condition: String, _dateTime: String, place: Location) {
+        WaterReport.Next_Id = WaterReport.Next_Id + 1
+        self.init(_id: WaterReport.Next_Id, _reporter: _reporter, _source: _source, _condition: _condition, _dateTime: _dateTime, place: place)
     }
     
     func getReporter() -> Account {
@@ -99,7 +107,7 @@ class WaterReport: Equatable {
     }
     
     func toString() -> String {
-        return "Report No.: \(id) \(reporter.getEmailAddress()) \n - \(condition) - \(source) \n Location: \(location)"
+        return "Report No.: \(self.getId()) \(self.getReporter().getEmailAddress()) \n - \(condition) - \(source) \n Location: \(location.toString())"
     }
     
     func isEqual(object: AnyObject?) -> Bool {
@@ -111,6 +119,10 @@ class WaterReport: Equatable {
         } else {
             return false
         }
+    }
+    
+    func toAnyObject() -> Dictionary<String, String> {
+        return ["conditon":self.getCondition(), "dateTime":self.getDateTime(), "id":String(self.getId()), "latitude":String(self.getLocation().getLatitude()), "longitude":String(self.getLocation().getLongitude()), "emailAddress":self.getReporter().getEmailAddress(), "source":self.getSource()]
     }
     
 }
