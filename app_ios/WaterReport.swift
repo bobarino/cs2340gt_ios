@@ -24,7 +24,7 @@ class WaterReport: Equatable {
     init(_id: Int, _reporter: Account, _source: String, _condition: String, _dateTime: String, place: Location) {
         reporter = _reporter
         condition = WaterReport.setCondition(newCondition: _condition)
-        source = WaterReport.setSource(newSource: _source);
+        source = WaterReport.setSource(newSource: _source)
         WaterReport.Next_Id = _id
         id = WaterReport.Next_Id
         date_time = _dateTime;

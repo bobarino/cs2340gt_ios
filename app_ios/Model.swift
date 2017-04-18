@@ -17,7 +17,7 @@ class Model {
     /*func getInstance() -> Model {
         return .instance
     }*/
-    func setup() {
+    func setup_accounts(model: Model) -> Bool {
         ref = FIRDatabase.database().reference()
         ref.child("accounts_ios").observeSingleEvent(of: .value, with: { snapshot in
             for rest in snapshot.children.allObjects as! [FIRDataSnapshot] {
@@ -39,12 +39,22 @@ class Model {
                         }
                     }
                     let dbAcc = Account(id: id, emailAddress: email, password: pass, cred: cred)
-                    Model.instance.addAccountInfo(newAcc: dbAcc)
+                    if(model.addAccountInfo(newAcc: dbAcc)) {
+                        print("Account: \(email) created")
+                    } else {
+                        print("Error adding Account")
+                    }
                 }
-
             }
         })
-        
+        setup_reports(model: model)
+        return true
+    }
+    
+    func setup_reports(model: Model) -> Bool {
+       // if (model.accountList.count > 0) {
+            print("WE HAVE ACCOUNTS")
+        ref = FIRDatabase.database().reference()
         ref.child("reports_ios").observeSingleEvent(of: .value, with: { snapshot in
             for rest in snapshot.children.allObjects as! [FIRDataSnapshot] {
                 if let snapDict = rest.value as? Dictionary<String, AnyObject> {
@@ -75,13 +85,18 @@ class Model {
                             email = each.value as! String
                         }
                     }
-                    let dbRep = WaterReport(_id: id, _reporter: Model.instance.findAccountByEmail(email: email), _source: source, _condition: condition, _dateTime: dateTime, place: Location(lat: latitude, longit: longitude))
-                    Model.instance.addReport(newReport: dbRep)
+                    let dbRep = WaterReport(_id: id, _reporter: model.findAccountByEmail(email: email), _source: source, _condition: condition, _dateTime: dateTime, place: Location(lat: latitude, longit: longitude))
+                    if (model.addReport(newReport: dbRep)) {
+                        print("Report: \(id) created")
+                    } else {
+                        print("Error adding Report")
+                    }
                 }
                 
             }
         })
-
+       // }
+        return true
     }
     
     var accountList = [Account]()
@@ -129,12 +144,11 @@ class Model {
     
     func addAccountInfo(newAcc: Account) -> Bool {
         for account in accountList {
-            if (newAcc.equals(account: account)) {
+            if (newAcc.getEmailAddress() == account.getEmailAddress()) {
                 return false;
             }
         }
         accountList.append(newAcc)
-        print(accountList)
         return true;
     }
     

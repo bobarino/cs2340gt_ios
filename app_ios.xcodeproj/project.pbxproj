@@ -21,6 +21,8 @@
 		017D03551E6CB0BF0064B3A3 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D03541E6CB0BF0064B3A3 /* Model.swift */; };
 		017D03571E6CB0D40064B3A3 /* Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017D03561E6CB0D40064B3A3 /* Credential.swift */; };
 		017D035B1E6CE7040064B3A3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 017D035A1E6CE7040064B3A3 /* GoogleService-Info.plist */; };
+		0194D61F1EA5BFD10013DA49 /* WaterPuritySubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0194D61E1EA5BFD10013DA49 /* WaterPuritySubmitViewController.swift */; };
+		0194D6211EA5C0040013DA49 /* WaterPurityReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0194D6201EA5C0040013DA49 /* WaterPurityReport.swift */; };
 		01AF46C11E6CAADA00E6F75E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AF46C01E6CAADA00E6F75E /* ViewController.swift */; };
 		01AF46C31E6CAAEE00E6F75E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AF46C21E6CAAEE00E6F75E /* LogInViewController.swift */; };
 		01AF46C51E6CAC7F00E6F75E /* LoggedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AF46C41E6CAC7F00E6F75E /* LoggedInViewController.swift */; };
@@ -69,6 +71,8 @@
 		017D03561E6CB0D40064B3A3 /* Credential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credential.swift; sourceTree = "<group>"; };
 		017D03591E6CCD1D0064B3A3 /* Water-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Water-Bridging-Header.h"; sourceTree = "<group>"; };
 		017D035A1E6CE7040064B3A3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0194D61E1EA5BFD10013DA49 /* WaterPuritySubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterPuritySubmitViewController.swift; sourceTree = "<group>"; };
+		0194D6201EA5C0040013DA49 /* WaterPurityReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterPurityReport.swift; sourceTree = "<group>"; };
 		01AF46C01E6CAADA00E6F75E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		01AF46C21E6CAAEE00E6F75E /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		01AF46C41E6CAC7F00E6F75E /* LoggedInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				017D03521E6CB0A00064B3A3 /* Account.swift */,
+				0194D6201EA5C0040013DA49 /* WaterPurityReport.swift */,
 				011B8EB51E8A15BE00971CE3 /* Location.swift */,
 				011B8EB31E8A14D900971CE3 /* WaterReport.swift */,
 				017D03541E6CB0BF0064B3A3 /* Model.swift */,
@@ -196,6 +201,7 @@
 				01AF46C41E6CAC7F00E6F75E /* LoggedInViewController.swift */,
 				017D034F1E6CB0450064B3A3 /* RegisterViewController.swift */,
 				011B8EB11E8A0F6F00971CE3 /* WaterReportSubmitViewController.swift */,
+				0194D61E1EA5BFD10013DA49 /* WaterPuritySubmitViewController.swift */,
 				01B1DD111EA08FAA00FE6565 /* WaterReportListViewController.swift */,
 			);
 			name = controller;
@@ -510,6 +516,7 @@
 				017D03551E6CB0BF0064B3A3 /* Model.swift in Sources */,
 				011B8EB61E8A15BE00971CE3 /* Location.swift in Sources */,
 				01AF46C31E6CAAEE00E6F75E /* LogInViewController.swift in Sources */,
+				0194D6211EA5C0040013DA49 /* WaterPurityReport.swift in Sources */,
 				01AF46C51E6CAC7F00E6F75E /* LoggedInViewController.swift in Sources */,
 				01AF46C11E6CAADA00E6F75E /* ViewController.swift in Sources */,
 				017D03501E6CB0450064B3A3 /* RegisterViewController.swift in Sources */,
@@ -518,6 +525,7 @@
 				011B8EB41E8A14D900971CE3 /* WaterReport.swift in Sources */,
 				017D03571E6CB0D40064B3A3 /* Credential.swift in Sources */,
 				017D03531E6CB0A00064B3A3 /* Account.swift in Sources */,
+				0194D61F1EA5BFD10013DA49 /* WaterPuritySubmitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
