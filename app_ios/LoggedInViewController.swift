@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import FirebaseAuth
 
 class LoggedInViewController: UIViewController {
     
@@ -28,6 +29,18 @@ class LoggedInViewController: UIViewController {
         marker.snippet = "Georgia"
         marker.map = googleMapView
         
+    }
+    
+    @IBAction func logout(_ sender: AnyObject) {
+        let firebaseAuth = FIRAuth.auth()
+        let model = Model.instance
+        do {
+            model.clearData()
+            try firebaseAuth?.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+
     }
 
 }

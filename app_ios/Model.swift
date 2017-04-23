@@ -52,8 +52,8 @@ class Model {
     }
     
     func setup_reports(model: Model) -> Bool {
-       // if (model.accountList.count > 0) {
-            print("WE HAVE ACCOUNTS")
+        // if (model.accountList.count > 0) {
+        //print("WE HAVE ACCOUNTS")
         ref = FIRDatabase.database().reference()
         ref.child("reports_ios").observeSingleEvent(of: .value, with: { snapshot in
             for rest in snapshot.children.allObjects as! [FIRDataSnapshot] {
@@ -95,10 +95,64 @@ class Model {
                 
             }
         })
-       // }
+        // }
+        setup_purity_reports(model: model)
         return true
     }
     
+    func setup_purity_reports(model: Model) -> Bool {
+        // if (model.accountList.count > 0) {
+        //print("WE HAVE ACCOUNTS")
+        ref = FIRDatabase.database().reference()
+        ref.child("purity_reports_ios").observeSingleEvent(of: .value, with: { snapshot in
+            for rest in snapshot.children.allObjects as! [FIRDataSnapshot] {
+                if let snapDict = rest.value as? Dictionary<String, AnyObject> {
+                    var id = 0
+                    var condition = ""
+                    var dateTime = ""
+                    var email = ""
+                    var latitude = 0.0
+                    var longitude = 0.0
+                    var contaminantPPM = 0
+                    var viralPPM = 0
+                    for each in snapDict {
+                        if (each.key == "condition") {
+                            condition = each.value as! String
+                        } else if (each.key == "dateTime") {
+                            dateTime = each.value as! String
+                        } else if (each.key == "id") {
+                            let id_string = each.value as! String
+                            id = Int(id_string)!
+                        } else if (each.key == "latitude") {
+                            let lat = each.value as! String
+                            latitude = Double(lat)!
+                        } else if (each.key == "longitude") {
+                            let long = each.value as! String
+                            longitude = Double(long)!
+                        } else if (each.key == "contaminantPPM") {
+                            let cont = each.value as! String
+                            contaminantPPM = Int(cont)!
+                        } else if (each.key == "viralPPM") {
+                            let vir = each.value as! String
+                            viralPPM = Int(vir)!
+                        } else if (each.key == "emailAddress") {
+                            email = each.value as! String
+                        }
+                    }
+                    let dbPur = WaterPurityReport(_id: id, _reporter: model.findAccountByEmail(email: email), _condition: condition, _viralPPM: viralPPM, _contaminantPPM: contaminantPPM, _dateTime: dateTime, place: Location(lat: latitude, longit: longitude))
+                    if (model.addPurity(newPurity: dbPur)) {
+                        print("Purity: \(id) created")
+                    } else {
+                        print("Error adding Purity")
+                    }
+                }
+                
+            }
+        })
+        // }
+        return true
+    }
+
     var accountList = [Account]()
     
     func getAccountList() -> [Account] {
@@ -106,17 +160,29 @@ class Model {
     }
     
     var reportList: [WaterReport]
-     
-     func getReportList() -> [WaterReport] {
+    
+    func getReportList() -> [WaterReport] {
         return reportList
-     }
+    }
+    
+    var purityList: [WaterPurityReport]
+    
+    func getPurityList() -> [WaterPurityReport] {
+        return purityList
+    }
     
     static var currentAccount = Account()
     var currentReport: WaterReport?
+    var currentPurity: WaterPurityReport?
     static var nextReportId = 1
+    static var nextPurityId = 1
     
     func getNextReportId() -> Int {
         return Model.nextReportId
+    }
+    
+    func getNextPurityId() -> Int {
+        return Model.nextPurityId
     }
     
     func getCurrentReport() -> WaterReport {
@@ -125,6 +191,14 @@ class Model {
     
     func setCurrentReport(currentReport: WaterReport) {
         self.currentReport = currentReport
+    }
+    
+    func getCurrentReport() -> WaterPurityReport {
+        return currentPurity!
+    }
+    
+    func setCurrentPurity(currentPurity: WaterPurityReport) {
+        self.currentPurity = currentPurity
     }
     
     func getCurrentAccount() -> Account {
@@ -140,6 +214,7 @@ class Model {
     init() {
         accountList = [Account]()
         reportList = [WaterReport]()
+        purityList = [WaterPurityReport]()
     }
     
     func addAccountInfo(newAcc: Account) -> Bool {
@@ -177,6 +252,15 @@ class Model {
         return true;
     }
     
+    func addPurity(newPurity: WaterPurityReport) -> Bool {
+        if(purityList.contains(newPurity)) {
+            return false
+        }
+        purityList.append(newPurity)
+        return true;
+    }
+
+    
     func findAccountById(id: Int) -> Account {
         for account in accountList {
             if (account.getId() == id) {
@@ -195,7 +279,11 @@ class Model {
         return nullAcc
     }
     
-    //findReportBySubmitter,id,source,condition
+    func clearData() {
+        accountList.removeAll()
+        purityList.removeAll()
+        reportList.removeAll()
+    }
     
     
 }
