@@ -14,7 +14,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let model = Model.instance
-        model.setup_accounts(model: model)
+        if (model.getAccountList().count == 0 && model.getReportList().count == 0 && model.getPurityList().count == 0) {
+            model.setup_accounts(model: model)
+        }
     }
     
     override func didReceiveMemoryWarning() {

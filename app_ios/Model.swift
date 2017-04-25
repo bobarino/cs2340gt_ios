@@ -287,6 +287,40 @@ class Model {
         return nullAcc
     }
     
+    
+    func getHighesReportId() -> Int {
+        var max = 0
+        for rep in reportList {
+            if (rep.getId() > max) {
+                max = rep.getId()
+            }
+        }
+        return max
+    }
+    
+    func getHighesPurityId() -> Int {
+        var max = 0
+        for pur in purityList {
+            if (pur.getId() > max) {
+                max = pur.getId()
+            }
+        }
+        return max
+    }
+    
+    func getHighestPurityContVirPPM() -> Int {
+        var max = 0
+        for pur in purityList {
+            if (pur.getContaminantPPM() > max) {
+                max = pur.getContaminantPPM()
+                if (pur.getViralPPM() > max) {
+                    max = pur.getViralPPM()
+                }
+            }
+        }
+        return max
+    }
+    
     func clearData() {
         accountList.removeAll()
         purityList.removeAll()

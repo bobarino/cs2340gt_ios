@@ -10,7 +10,7 @@ import Foundation
 
 class WaterReport: Equatable {
     
-    static var Next_Id = 0
+    //static var Next_Id = 0
     
     var reporter: Account
     var date_time: String
@@ -26,21 +26,23 @@ class WaterReport: Equatable {
         reporter = _reporter
         condition = WaterReport.setCondition(newCondition: _condition)
         source = WaterReport.setSource(newSource: _source)
-        WaterReport.Next_Id = _id
-        id = WaterReport.Next_Id
-        WaterReport.Next_Id = WaterReport.Next_Id + 1
+        //WaterReport.Next_Id = _id
+        id = _id
+        //WaterReport.Next_Id = WaterReport.Next_Id + 1
         date_time = _dateTime
         location = place
         email = emailAddress
     }
     
     convenience init() {
-        self.init(_id: WaterReport.Next_Id + 1, _reporter: Account(), _source: "", _condition: "", _dateTime: "", place: Location(lat: 0, longit: 0), emailAddress: "")
+        let model = Model.instance
+        self.init(_id: model.getHighesReportId() + 1, _reporter: Account(), _source: "", _condition: "", _dateTime: "", place: Location(lat: 0, longit: 0), emailAddress: "")
     }
     
     convenience init(_reporter: Account, _source: String, _condition: String, _dateTime: String, place: Location, emailAddress: String) {
-        WaterReport.Next_Id = WaterReport.Next_Id + 1
-        self.init(_id: WaterReport.Next_Id, _reporter: _reporter, _source: _source, _condition: _condition, _dateTime: _dateTime, place: place, emailAddress: emailAddress)
+        let model = Model.instance
+        //WaterReport.Next_Id = WaterReport.Next_Id + 1
+        self.init(_id: model.getHighesReportId() + 1, _reporter: _reporter, _source: _source, _condition: _condition, _dateTime: _dateTime, place: place, emailAddress: emailAddress)
     }
     
     func getReporter() -> Account {

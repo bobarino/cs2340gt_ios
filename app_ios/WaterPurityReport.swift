@@ -28,20 +28,22 @@ class WaterPurityReport: Equatable {
         condition = WaterPurityReport.setCondition(newCondition: _condition)
         viralPPM = _viralPPM
         contaminantPPM = _contaminantPPM
-        WaterReport.Next_Id = _id
-        id = WaterPurityReport.Next_Id
+        //WaterReport.Next_Id = _id
+        id = _id
         date_time = _dateTime
         location = place
         email = emailAddress
     }
     
     convenience init() {
-        self.init(_id: WaterPurityReport.Next_Id + 1, _reporter: Account(), _condition: "", _viralPPM: 0, _contaminantPPM: 0, _dateTime: "", place: Location(lat: 0, longit: 0), emailAddress: "")
+        let model = Model.instance
+        self.init(_id: model.getHighesPurityId() + 1, _reporter: Account(), _condition: "", _viralPPM: 0, _contaminantPPM: 0, _dateTime: "", place: Location(lat: 0, longit: 0), emailAddress: "")
     }
     
     convenience init(_reporter: Account, _condition: String, _viralPPM: Int, _contaminantPPM: Int, _dateTime: String, place: Location, emailAddress: String) {
-        WaterReport.Next_Id = WaterReport.Next_Id + 1
-        self.init(_id: WaterReport.Next_Id, _reporter: _reporter, _condition: _condition, _viralPPM: _viralPPM, _contaminantPPM: _contaminantPPM, _dateTime: _dateTime, place: place, emailAddress: emailAddress)
+        let model = Model.instance
+        //WaterReport.Next_Id = WaterReport.Next_Id + 1
+        self.init(_id: model.getHighesPurityId() + 1, _reporter: _reporter, _condition: _condition, _viralPPM: _viralPPM, _contaminantPPM: _contaminantPPM, _dateTime: _dateTime, place: place, emailAddress: emailAddress)
     }
     
     func getReporter() -> Account {

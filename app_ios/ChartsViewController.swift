@@ -12,13 +12,18 @@ import UIKit
 
 class ChartsViewController: UIViewController {
     
+    @IBOutlet weak var maxLabel: UILabel!
+    @IBOutlet weak var halfLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    let model = Model.instance
+        let model = Model.instance
+        maxLabel.text = String(model.getHighestPurityContVirPPM())
+        halfLabel.text = String(model.getHighestPurityContVirPPM() / 2)
 
         let chartConfig = BarsChartConfig(
-            valsAxisConfig: ChartAxisConfig(from: 0, to: 100, by: 5)
+            valsAxisConfig: ChartAxisConfig(from: 0, to: Double(model.getHighestPurityContVirPPM()), by: Double(model.getHighestPurityContVirPPM() / 20))
         )
 
         let frame1 = CGRect(x: 0, y: 250, width: 150, height: 350)
