@@ -538,6 +538,15 @@
                                     <segue destination="PDH-YV-Lb9" kind="presentation" id="dFc-jP-vwS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GeX-He-h8J">
+                                <frame key="frameInset" minX="259" minY="611" width="100" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="View Graph"/>
+                                <connections>
+                                    <segue destination="Q8p-0P-1IP" kind="presentation" id="eN4-fr-3Jv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -681,6 +690,37 @@
             </objects>
             <point key="canvasLocation" x="2740" y="1218.440779610195"/>
         </scene>
+        <!--Charts View Controller-->
+        <scene sceneID="EzV-UK-suj">
+            <objects>
+                <viewController storyboardIdentifier="ChartsViewController" id="Q8p-0P-1IP" customClass="ChartsViewController" customModule="app_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ofD-E8-f7I"/>
+                        <viewControllerLayoutGuide type="bottom" id="KER-dc-fQD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cgG-L4-Drd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Cr-QH-j5O">
+                                <frame key="frameInset" minX="16" minY="611" width="100" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="wks-xc-o1o" kind="presentation" id="wCw-iX-kPc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BW0-ec-arL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2556" y="1981.2593703148427"/>
+        </scene>
         <!--Register View Controller-->
         <scene sceneID="amW-Ua-tf1">
             <objects>
@@ -778,7 +818,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gpf-oc-12y"/>
+        <segue reference="wCw-iX-kPc"/>
+        <segue reference="dFc-jP-vwS"/>
         <segue reference="k2v-6i-Xsj"/>
     </inferredMetricsTieBreakers>
 </document>

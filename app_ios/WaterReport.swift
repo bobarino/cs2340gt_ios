@@ -20,24 +20,27 @@ class WaterReport: Equatable {
     var waterCondition: [String] = ["Waste", "Treatable - Muddy", "Treatable - Clear", "Potable"]
     var location: Location
     var source: String
+    var email: String
     
-    init(_id: Int, _reporter: Account, _source: String, _condition: String, _dateTime: String, place: Location) {
+    init(_id: Int, _reporter: Account, _source: String, _condition: String, _dateTime: String, place: Location, emailAddress: String) {
         reporter = _reporter
         condition = WaterReport.setCondition(newCondition: _condition)
         source = WaterReport.setSource(newSource: _source)
         WaterReport.Next_Id = _id
         id = WaterReport.Next_Id
-        date_time = _dateTime;
-        location = place;
+        WaterReport.Next_Id = WaterReport.Next_Id + 1
+        date_time = _dateTime
+        location = place
+        email = emailAddress
     }
     
     convenience init() {
-        self.init(_id: WaterReport.Next_Id + 1, _reporter: Account(), _source: "", _condition: "", _dateTime: "", place: Location(lat: 0, longit: 0))
+        self.init(_id: WaterReport.Next_Id + 1, _reporter: Account(), _source: "", _condition: "", _dateTime: "", place: Location(lat: 0, longit: 0), emailAddress: "")
     }
     
-    convenience init(_reporter: Account, _source: String, _condition: String, _dateTime: String, place: Location) {
+    convenience init(_reporter: Account, _source: String, _condition: String, _dateTime: String, place: Location, emailAddress: String) {
         WaterReport.Next_Id = WaterReport.Next_Id + 1
-        self.init(_id: WaterReport.Next_Id, _reporter: _reporter, _source: _source, _condition: _condition, _dateTime: _dateTime, place: place)
+        self.init(_id: WaterReport.Next_Id, _reporter: _reporter, _source: _source, _condition: _condition, _dateTime: _dateTime, place: place, emailAddress: emailAddress)
     }
     
     func getReporter() -> Account {
@@ -58,6 +61,10 @@ class WaterReport: Equatable {
     
     func getDateTime() -> String {
         return date_time
+    }
+    
+    func getEmail() -> String {
+        return email
     }
     
     func setDateTime(newDateTime: String) {
@@ -107,7 +114,7 @@ class WaterReport: Equatable {
     }
     
     func toString() -> String {
-        return "Report No.: \(self.getId()) \(self.getReporter().getEmailAddress()) \n - \(condition) - \(source) \n Location: \(location.toString())"
+        return "Report No.: \(self.getId()) \(self.getEmail()) \n - \(condition) - \(source) \n Location: \(location.toString())"
     }
     
     func isEqual(object: AnyObject?) -> Bool {
@@ -122,7 +129,7 @@ class WaterReport: Equatable {
     }
     
     func toAnyObject() -> Dictionary<String, String> {
-        return ["conditon":self.getCondition(), "dateTime":self.getDateTime(), "id":String(self.getId()), "latitude":String(self.getLocation().getLatitude()), "longitude":String(self.getLocation().getLongitude()), "emailAddress":self.getReporter().getEmailAddress(), "source":self.getSource()]
+        return ["conditon":self.getCondition(), "dateTime":self.getDateTime(), "id":String(self.getId()), "latitude":String(self.getLocation().getLatitude()), "longitude":String(self.getLocation().getLongitude()), "emailAddress":self.getEmail(), "source":self.getSource()]
     }
     
 }

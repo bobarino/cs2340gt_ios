@@ -10,6 +10,7 @@ target 'app_ios' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'GoogleMaps'
+  pod 'SwiftCharts'
 
 
   target 'app_iosTests' do

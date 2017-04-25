@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01022A8B1EAED9610093A77A /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01022A8A1EAED9610093A77A /* ChartsViewController.swift */; };
 		011B8EB21E8A0F6F00971CE3 /* WaterReportSubmitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B8EB11E8A0F6F00971CE3 /* WaterReportSubmitViewController.swift */; };
 		011B8EB41E8A14D900971CE3 /* WaterReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B8EB31E8A14D900971CE3 /* WaterReport.swift */; };
 		011B8EB61E8A15BE00971CE3 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B8EB51E8A15BE00971CE3 /* Location.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01022A8A1EAED9610093A77A /* ChartsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
 		011B8EB11E8A0F6F00971CE3 /* WaterReportSubmitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterReportSubmitViewController.swift; sourceTree = "<group>"; };
 		011B8EB31E8A14D900971CE3 /* WaterReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterReport.swift; sourceTree = "<group>"; };
 		011B8EB51E8A15BE00971CE3 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				01AF46C01E6CAADA00E6F75E /* ViewController.swift */,
+				01022A8A1EAED9610093A77A /* ChartsViewController.swift */,
 				01AF46C21E6CAAEE00E6F75E /* LogInViewController.swift */,
 				0186F7FC1EAD32CC0014F8B7 /* EditUserViewController.swift */,
 				01AF46C41E6CAC7F00E6F75E /* LoggedInViewController.swift */,
@@ -533,6 +536,7 @@
 				011B8EB41E8A14D900971CE3 /* WaterReport.swift in Sources */,
 				017D03571E6CB0D40064B3A3 /* Credential.swift in Sources */,
 				017D03531E6CB0A00064B3A3 /* Account.swift in Sources */,
+				01022A8B1EAED9610093A77A /* ChartsViewController.swift in Sources */,
 				0194D61F1EA5BFD10013DA49 /* WaterPuritySubmitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

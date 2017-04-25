@@ -14,9 +14,9 @@ class Model {
     static let instance = Model()
     var ref: FIRDatabaseReference!
     
-    /*func getInstance() -> Model {
-        return .instance
-    }*/
+    var waterReportId = 0
+    var waterPurityId = 0
+    
     func setup_accounts(model: Model) -> Bool {
         ref = FIRDatabase.database().reference()
         ref.child("accounts_ios").observeSingleEvent(of: .value, with: { snapshot in
@@ -85,7 +85,7 @@ class Model {
                             email = each.value as! String
                         }
                     }
-                    let dbRep = WaterReport(_id: id, _reporter: model.findAccountByEmail(email: email), _source: source, _condition: condition, _dateTime: dateTime, place: Location(lat: latitude, longit: longitude))
+                    let dbRep = WaterReport(_id: id, _reporter: model.findAccountByEmail(email: email), _source: source, _condition: condition, _dateTime: dateTime, place: Location(lat: latitude, longit: longitude), emailAddress: email)
                     if (model.addReport(newReport: dbRep)) {
                         print("Report: \(id) created")
                     } else {
@@ -139,7 +139,7 @@ class Model {
                             email = each.value as! String
                         }
                     }
-                    let dbPur = WaterPurityReport(_id: id, _reporter: model.findAccountByEmail(email: email), _condition: condition, _viralPPM: viralPPM, _contaminantPPM: contaminantPPM, _dateTime: dateTime, place: Location(lat: latitude, longit: longitude))
+                    let dbPur = WaterPurityReport(_id: id, _reporter: model.findAccountByEmail(email: email), _condition: condition, _viralPPM: viralPPM, _contaminantPPM: contaminantPPM, _dateTime: dateTime, place: Location(lat: latitude, longit: longitude), emailAddress: email)
                     if (model.addPurity(newPurity: dbPur)) {
                         print("Purity: \(id) created")
                     } else {
@@ -151,6 +151,14 @@ class Model {
         })
         // }
         return true
+    }
+    
+    func incrementReport(id: Int) {
+        waterReportId = id + 1
+    }
+    
+    func incrementPurity(id: Int) {
+        waterPurityId = id + 1
     }
 
     var accountList = [Account]()

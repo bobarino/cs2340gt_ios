@@ -79,12 +79,14 @@ class WaterReportSubmitViewController: UIViewController, UIPickerViewDataSource,
     }
     
     @IBAction func submitReport(_ sender: AnyObject) {
+        let model = Model.instance
         let loc = Location(lat: Double(lat.text!)!, longit: Double(long.text!)!)
-        let report = WaterReport(_reporter: curAcc, _source: source, _condition: condition, _dateTime: date.text!, place: loc)
+        let report = WaterReport(_reporter: curAcc, _source: source, _condition: condition, _dateTime: date.text!, place: loc, emailAddress: curAcc.getEmailAddress())
         
         self.ref.child("reports_ios").child(idNum.text!).setValue(report.toAnyObject())
         { err, ref in
             print("Submitted!!!")
+            model.addReport(newReport: report)
         }
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoggedInViewController")
