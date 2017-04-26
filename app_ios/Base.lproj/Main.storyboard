@@ -314,6 +314,8 @@
                     </view>
                     <connections>
                         <outlet property="googleMapView" destination="Ut6-fc-qAc" id="qf6-i2-UzQ"/>
+                        <outlet property="listPur" destination="PPn-jX-oWX" id="X7T-aQ-oq5"/>
+                        <outlet property="submitPur" destination="MKV-K5-b8T" id="UbB-ER-O2w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="azF-Yz-Jvn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -857,8 +859,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wCw-iX-kPc"/>
         <segue reference="dFc-jP-vwS"/>
+        <segue reference="6nn-1A-bIE"/>
         <segue reference="k2v-6i-Xsj"/>
     </inferredMetricsTieBreakers>
 </document>

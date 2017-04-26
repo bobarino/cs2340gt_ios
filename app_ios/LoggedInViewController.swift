@@ -13,6 +13,8 @@ import FirebaseAuth
 class LoggedInViewController: UIViewController {
     
     @IBOutlet weak var googleMapView: GMSMapView!
+    @IBOutlet weak var submitPur: UIButton!
+    @IBOutlet weak var listPur: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,20 @@ class LoggedInViewController: UIViewController {
             let marker = GMSMarker()
             marker.position = CLLocationCoordinate2DMake(m.getLocation().getLatitude(), m.getLocation().getLongitude())
             marker.map = googleMapView
+        }
+        
+        if (model.getCurrentAccount().getCredential() == Credential.USER) {
+            submitPur.isHidden = true
+            listPur.isHidden = true
+        } else {
+            let markersPur = model.getPurityList()
+            for p in markersPur {
+                
+                let marker = GMSMarker()
+                marker.position = CLLocationCoordinate2DMake(p.getLocation().getLatitude(), p.getLocation().getLongitude())
+                marker.icon = GMSMarker.markerImage(with: .blue)
+                marker.map = googleMapView
+            }
         }
         
     }
