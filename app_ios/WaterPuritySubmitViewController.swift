@@ -65,7 +65,7 @@ class WaterPuritySubmitViewController: UIViewController, UIPickerViewDataSource,
     @IBAction func submitPurity(_ sender: AnyObject) {
         let model = Model.instance
         let loc = Location(lat: Double(lat.text!)!, longit: Double(long.text!)!)
-        let purity = WaterPurityReport(_reporter: curAcc, _condition: condition, _viralPPM: Int(viralPPM.text!)!, _contaminantPPM: Int(contaminantPPM.text!)!, _dateTime: date.text!, place: loc, emailAddress: curAcc.getEmailAddress())
+        let purity = WaterPurityReport(_reporter: curAcc, _condition: condition, _viralPPM: Int(viralPPM.text!)!, _contaminantPPM: Int(contaminantPPM.text!)!, _dateTime: date.text!, place: loc, emailAddress: model.getCurrentAccount().getEmailAddress())
         
         self.ref.child("purity_reports_ios").child(idNum.text!).setValue(purity.toAnyObject())
         { err, ref in

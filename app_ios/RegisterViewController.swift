@@ -64,6 +64,7 @@ class RegisterViewController: UIViewController {
                     
                     self.ref.child("accounts_ios").child(String(account.getId())).setValue(account.toAnyObject())
                     { err, ref in
+                        model.addAccountInfo(newAcc: account)
                         print("Registered!!!")
                     }
                     

@@ -37,6 +37,8 @@ class LoggedInViewController: UIViewController {
         if (model.getCurrentAccount().getCredential() == Credential.USER) {
             submitPur.isHidden = true
             listPur.isHidden = true
+        } else if (model.getCurrentAccount().getCredential() == Credential.WORKER){
+            listPur.isHidden = true
         } else {
             let markersPur = model.getPurityList()
             for p in markersPur {

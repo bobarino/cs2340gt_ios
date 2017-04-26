@@ -52,6 +52,7 @@ class LogInViewController: UIViewController {
                 
                 if error == nil {
                     //model.addAccountInfo()
+                    print(model.getAccountList().count)
                     model.setCurrentAccount(currentAccount: model.findAccountByEmail(email: self.textFieldLoginEmail.text!));
                     print(model.getCurrentAccount().toString())
                     
